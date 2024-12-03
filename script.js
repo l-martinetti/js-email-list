@@ -15,17 +15,29 @@ mostrare le 10 email solo quando solo al termine delle 10 chiamate all’API
 
 const endpoint = "https://flynn.boolean.careers/exercises/api/random/mail";
 const mailContainer = document.getElementById("mail-container");
+const button = document.getElementById("button");
 
+
+
+button.addEventListener("click", () => {
+    mailContainer.innerHTML = "";
+    emailGenerator()
+})
+
+function emailGenerator (){
 for (let i = 0; i < 10; i++){
-axios.get(endpoint)
-    .then(response => {
-        const randomEmail = response.data.response;
-        mailContainer.innerHTML += `<li>${randomEmail}</li>`;
+    axios.get(endpoint)
+        .then(response => {
+            const randomEmail = response.data.response;
+            mailContainer.innerHTML += `<li>${randomEmail}</li>`; 
         })
-    .catch(err => {
-        console.log("Errore", err);
-    })
+        .catch(err => {
+            console.log("Errore", err);
+        })
 };
+}
+
+
 
 
 
