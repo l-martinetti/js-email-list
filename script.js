@@ -13,6 +13,21 @@ Inserire un bottone che al click faccia il fetch altre 10 mail (sostituendo le a
 mostrare le 10 email solo quando solo al termine delle 10 chiamate all’API
 */
 
+const endpoint = "https://flynn.boolean.careers/exercises/api/random/mail";
+const mailContainer = document.getElementById("mail-container");
+
+for (let i = 0; i < 10; i++){
+axios.get(endpoint)
+    .then(response => {
+        const randomEmail = response.data.response;
+        mailContainer.innerHTML += `<li>${randomEmail}</li>`;
+        })
+    .catch(err => {
+        console.log("Errore", err);
+    })
+};
+
+
 
 
 
